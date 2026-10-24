@@ -4,7 +4,7 @@ export const TOKEN_KEY = 'hcm_token';
 export const USER_KEY = 'hcm_user';
 
 const client = axios.create({
-  baseURL: process.env.VITE_API_BASE_URL || 'http://localhost:3001/api',
+  baseURL: process.env.API_BASE_URL || 'http://localhost:3001/api',
   headers: { 'Content-Type': 'application/json' },
 });
 
