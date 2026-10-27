@@ -1,10 +1,10 @@
-import express from "express";
 import app from "./app.js";
 import { connectDB } from "./src/config/db.js";
 import { initAdmin } from "./src/utils/bootstrap.js"; // Bootstrap script import ki
 import { configDotenv } from "dotenv";
+import { fileURLToPath } from "node:url";
 
-configDotenv();
+configDotenv({ path: ".env.local" });
 
 const PORT = process.env.PORT || 3001; // .env se port uthaye ga, warna 3001
 
@@ -25,7 +25,11 @@ const startServer = async () => {
     }
 };
 
-startServer();
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+    startServer();
+}
+
+export default app;
 
 
 // import express from "express";

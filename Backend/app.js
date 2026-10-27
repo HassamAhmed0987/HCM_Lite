@@ -9,6 +9,7 @@ import LeaveRoutes from "./src/routes/leaveRoutes.js";
 import PayrollRoutes from "./src/routes/payrollRoutes.js";
 import AiRoutes from "./src/routes/aiRoutes.js";
 import AnnoucementRoutes from "./src/routes/announcementRoutes.js";
+import { connectDB } from "./src/config/db.js";
 
 const app = express()
 
@@ -18,6 +19,20 @@ app.use(cors({
     credentials: true
 }))
 app.use(express.json())
+app.use(async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (error) {
+        console.error("Database unavailable for request:", {
+            method: req.method,
+            path: req.path,
+            name: error.name,
+            message: error.message,
+        });
+        res.status(503).json({ error: "Service temporarily unavailable" });
+    }
+});
 app.use('/api/auth', AuthRoutes);
 app.use('/api/setup', SetupRoutes);
 app.use('/api/employees', employeeRoutes);
