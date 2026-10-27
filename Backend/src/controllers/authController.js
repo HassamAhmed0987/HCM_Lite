@@ -8,7 +8,7 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
     
     // Find user and populate employee profile if linked
-    const user = await User.findOne({ email }).populate('employeeProfile');
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ error: "Invalid email or password" });
     }
