@@ -50,6 +50,51 @@ export default function Login() {
         <button className="btn-primary w-full" disabled={busy}>
           {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <LogIn className="h-4 w-4" />} Sign in
         </button>
+        {/* Demo Accounts */}
+        <div className="border-t border-slate-200 pt-5">
+          <p className="mb-3 text-center text-sm font-semibold text-slate-700">
+            Demo Accounts
+          </p>
+
+          <div className="grid grid-cols-3 gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('admin@gmail.com');
+                setPassword('admin1234');
+              }}
+              className="rounded-lg border border-indigo-200 bg-indigo-50 px-2 py-3 text-sm font-medium text-indigo-700 hover:bg-indigo-100"
+            >
+              Admin
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('ali@company.com');
+                setPassword('Temp@ali@company.com');
+              }}
+              className="rounded-lg border border-emerald-200 bg-emerald-50 px-2 py-3 text-sm font-medium text-emerald-700 hover:bg-emerald-100"
+            >
+              Employee
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('ayesha.hr@company.com');
+                setPassword('Temp@ayesha.hr@company.com');
+              }}
+              className="rounded-lg border border-amber-200 bg-amber-50 px-2 py-3 text-sm font-medium text-amber-700 hover:bg-amber-100"
+            >
+              HR
+            </button>
+          </div>
+
+          <p className="mt-3 text-center text-xs text-slate-500">
+            Select a demo account to autofill the login credentials.
+          </p>
+        </div>
       </form>
     </div>
   );
